@@ -40,7 +40,6 @@ class ClienteController extends Controller
         $clientes=Cliente::create([
             'ci'=>request('ci'),
             'nombre'=>request('nombre'),
-            'sexo'=>request('sexo'),
             'telefono'=>request('telefono'),
             'email'=>request('email'),
         ]);
@@ -68,7 +67,7 @@ class ClienteController extends Controller
     {
         return view('cliente.edit',compact('cliente'));
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *

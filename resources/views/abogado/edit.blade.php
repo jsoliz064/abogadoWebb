@@ -1,47 +1,34 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'Abogado-Edit')
 
 @section('content_header')
-    <h1>Editar Clientes</h1>
+    <h1>Editar Abogado</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="post" action="{{route('clientes.update',$cliente)}}" novalidate >
+        <form method="post" action="{{route('abogados.update',$abogado)}}" novalidate >
 
             @csrf
             @method('PATCH')
             
             <h5>Carnet de Identidad:</h5>
-            <input type="text"  name="ci" value="{{$cliente->ci}}" class="focus border-primary  form-control" >
+            <input type="text"  name="ci" value="{{$abogado->ci}}" class="focus border-primary  form-control" >
             @error('ci')
             <p>DEBE INGRESAR BIEN EL CI</p>
             @enderror
 
             <h5>Nombre Completo:</h5>
-            <input type="text"  name="nombre" value="{{$cliente->nombre}}" class="focus border-primary  form-control" >
+            <input type="text"  name="nombre" value="{{$abogado->nombre}}" class="focus border-primary  form-control" >
 
             @error('nombre')
             <p>DEBE INGRESAR BIEN SU NOMBRE</p>
             @enderror
 
-         <div class="form-group">
-            <h5>Sexo:</h5>
-            <select name="sexo" id="select-sexo"  class="focus border-primary  form-control">
-                <option value="{{$cliente->sexo}}">{{$cliente->sexo}}</option>
-                <option value="F">Femenino</option>
-                <option value="M">Masculino</option>
-            </select>
-
-            @error('sexo')
-                <p>DEBE INGRESAR BIEN SU SEXO</p>
-            @enderror
-         </div>
-
             <h5>Telefono:</h5>
-            <input type="text" name="telefono" value="{{$cliente->telefono}}"  class="focus border-primary  form-control" >
+            <input type="text" name="telefono" value="{{$abogado->telefono}}"  class="focus border-primary  form-control" >
 
 
             @error('telefono')
@@ -49,7 +36,7 @@
             @enderror
 
             <h5>Email:</h5>
-            <input type="text" name="email" value="{{$cliente->email}}" class="focus border-primary  form-control" >
+            <input type="text" name="email" value="{{$abogado->email}}" class="focus border-primary  form-control" >
 
 
             @error('email')
@@ -60,7 +47,7 @@
             <br>
 
             <button  class="btn btn-danger btn-sm" type="submit">Guardar</button>
-            <a href="{{route('clientes.index')}}"class="btn btn-warning text-white btn-sm">Volver</a>
+            <a href="{{route('abogados.index')}}"class="btn btn-warning text-white btn-sm">Volver</a>
         </form>
 
     </div>

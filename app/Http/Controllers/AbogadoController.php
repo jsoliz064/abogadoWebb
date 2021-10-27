@@ -14,7 +14,8 @@ class AbogadoController extends Controller
      */
     public function index()
     {
-        //
+        $abogados=Abogado::all();
+        return view('abogado.index',compact('abogados'));
     }
 
     /**
@@ -24,7 +25,8 @@ class AbogadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('abogado.create');
+        
     }
 
     /**
@@ -35,7 +37,15 @@ class AbogadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $abogados=Abogado::create([
+            'ci'=>request('ci'),
+            'nombre'=>request('nombre'),
+            'telefono'=>request('telefono'),
+            'email'=>request('email'),
+        ]);
+        return redirect()->route('abogados.index');
+    
     }
 
     /**
@@ -46,7 +56,8 @@ class AbogadoController extends Controller
      */
     public function show(Abogado $abogado)
     {
-        //
+        return view('abogado.show',compact ('abogado'));
+        
     }
 
     /**
@@ -57,7 +68,8 @@ class AbogadoController extends Controller
      */
     public function edit(Abogado $abogado)
     {
-        //
+        return view('abogado.edit',compact('abogado'));
+        
     }
 
     /**
@@ -69,7 +81,14 @@ class AbogadoController extends Controller
      */
     public function update(Request $request, Abogado $abogado)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $abogado->ci=$request->ci;
+        $abogado->nombre=$request->nombre;
+        $abogado->telefono=$request->telefono;
+        $abogado->email=$request->email;
+        $abogado->save();
+        return redirect()->route('abogados.index');
+    
     }
 
     /**
@@ -80,6 +99,7 @@ class AbogadoController extends Controller
      */
     public function destroy(Abogado $abogado)
     {
-        //
+        $abogado->delete();
+        return redirect()->route('abogados.index');
     }
 }

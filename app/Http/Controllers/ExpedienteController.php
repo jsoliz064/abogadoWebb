@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Expediente;
+use App\Models\Abogado;
 use Illuminate\Http\Request;
 
 class ExpedienteController extends Controller
@@ -24,7 +25,7 @@ class ExpedienteController extends Controller
      */
     public function create()
     {
-        return view('expediente.create');
+        return view('expediente.create2');
     }
 
     /**
@@ -41,7 +42,8 @@ class ExpedienteController extends Controller
             'nombre'=>request('nombre'),
             'materia'=>request('materia'),
         ]);
-        return redirect()->route('expedientes.index');
+        $expediente=Expediente::all()->last()->id;
+        return redirect()->route('expedientes.create2',$expediente);
     }
 
     /**

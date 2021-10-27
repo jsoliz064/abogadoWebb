@@ -88,7 +88,7 @@ return [
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => true,
+    'layout_dark_mode' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -264,12 +264,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Abogados',
-                    'url'  => 'admin/settings',
+                    'url'  => 'abogados',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [
                     'text' => 'Procuradores',
-                    'url'  => 'admin/settings',
+                    'url'  => 'procuradors',
                     'icon' => 'fas fa-fw fa-user',
                 ],
                 [

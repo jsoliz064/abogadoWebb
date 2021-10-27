@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AbogadoExpediente extends Model
 {
     use HasFactory;
+    protected $table="abogado_expedientes";
+    protected $guarded=['id','created_at','updated_at'];
 }

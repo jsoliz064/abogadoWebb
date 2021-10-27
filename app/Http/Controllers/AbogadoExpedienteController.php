@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AbogadoExpediente;
+use App\Models\Expediente;
+use App\Models\Abogado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AbogadoExpedienteController extends Controller
 {
@@ -24,7 +27,15 @@ class AbogadoExpedienteController extends Controller
      */
     public function create()
     {
-        //
+        $expedientes=Expediente::all();
+        $abogados=Abogado::all();
+        return view('expediente.index',compact('expedientes','abogados'));
+    }
+    public function create2($expediente)
+    {
+        $abogadosexpedientes=DB::select('SELECT * FROM abogados WHERE id IN (SELECT id_abogado FROM abogado_expedientes)');
+        $abogados=DB::select('SELECT * FROM abogados,abogado_expedientes WHERE abogados.id<>abogado_expedientes.id_abogado');
+        return view('abogadoExpediente.create2',compact('abogados','expediente','abogadosexpedientes'));
     }
 
     /**
@@ -35,7 +46,13 @@ class AbogadoExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $abogadoExpediente=abogadoExpediente::create([
+            'id_abogado'=>request('id_abogado'),
+            'id_expediente'=> request('id_expediente'),
+        ]);
+        $expediente=$request->id_expediente;
+        return redirect(route('expedientes.create2',compact('expediente')));
     }
 
     /**
