@@ -5,12 +5,12 @@ include 'conexionpg.php';
 $email=$_POST['usuario'];
 $password=$_POST['password'];
 
-$sentencia=$conexion->prepare("SELECT password FROM users WHERE email=?");
+$sentencia=$conexion->prepare("SELECT * FROM users WHERE email=?");
 $sentencia->execute([$email]);
 $fila=$sentencia->fetch(PDO::FETCH_ASSOC);
 
 if ($fila && password_verify($password,$fila['password'])){
-    echo json_encode($fila,JSON_UNESCAPED_UNICODE);
+    echo json_encode($fila['id'],JSON_UNESCAPED_UNICODE);
 } 
 
 /* codigo simple */
