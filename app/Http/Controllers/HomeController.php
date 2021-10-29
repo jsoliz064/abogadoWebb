@@ -25,6 +25,6 @@ class HomeController extends Controller
     public function index()
     {
         $expedientes=Expediente::all();
-        return view('home',compact('expedientes'));
+        return view('index',compact('expedientes'));
     }
 }

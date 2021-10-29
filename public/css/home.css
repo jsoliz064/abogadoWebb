@@ -1,0 +1,39 @@
+
+.section{
+    padding: 2rem 0 4rem;
+}
+
+.section_title{
+    font: size 20px;
+}
+.section_subtitle{
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-3);
+}
+
+.section_title,
+.section_subtitle{
+    text-align: center;
+}
+.form {
+    /* width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; */
+    justify-content: center;
+   /*  align-items: center; */
+  }
+/*   .form input {
+  width: 90%;
+  height: 30px;
+  margin: 0.5rem;
+}
+
+.form button {
+  padding: 0.5em 1em;
+  border: none;
+  background: rgb(100, 200, 255);
+  cursor: pointer;
+} */

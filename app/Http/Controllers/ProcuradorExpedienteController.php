@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ProcuradorExpediente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Expediente;
 
 class ProcuradorExpedienteController extends Controller
 {
@@ -36,6 +38,20 @@ class ProcuradorExpedienteController extends Controller
     public function store(Request $request)
     {
         //
+    }
+    public function storeProcuradorExpediente(Request $request,Expediente $expediente)
+    {
+        if ($request->id_procurador<>"null"){
+            date_default_timezone_set("America/La_Paz");
+            $procuradorExpediente=procuradorExpediente::create([
+                'id_procurador'=>request('id_procurador'),
+                'id_expediente'=> $expediente->id,
+            ]);
+            return redirect(route('expedientes.procuradors',compact('expediente')));
+        }
+        else {
+            return redirect()->route('expedientes.procuradors',compact('expediente'))->with('status','Seleccione un Procurador');
+        }
     }
 
     /**
@@ -81,5 +97,14 @@ class ProcuradorExpedienteController extends Controller
     public function destroy(ProcuradorExpediente $procuradorExpediente)
     {
         //
+    }
+    public function destroyProcuradorExpediente(Request $request,Expediente $expediente)
+    {
+        $procuradorExpediente_id=DB::select("SELECT id FROM procurador_expedientes WHERE id_expediente=$expediente->id and id_procurador=$request->procurador");
+        if ($procuradorExpediente_id){
+            procuradorExpediente::destroy($procuradorExpediente_id[0]->id);
+            return redirect()->route('expedientes.procuradors',compact ('expediente'));
+        }
+        return redirect()->route('expedientes.procuradors',compact ('expediente'))->with('status','no se pudo eliminar');
     }
 }

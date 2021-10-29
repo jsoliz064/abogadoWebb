@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Abogado;
 use Illuminate\Http\Request;
-
+ 
 class AbogadoController extends Controller
 {
     /**
@@ -26,7 +26,6 @@ class AbogadoController extends Controller
     public function create()
     {
         return view('abogado.create');
-        
     }
 
     /**
@@ -45,7 +44,6 @@ class AbogadoController extends Controller
             'email'=>request('email'),
         ]);
         return redirect()->route('abogados.index');
-    
     }
 
     /**
@@ -57,7 +55,6 @@ class AbogadoController extends Controller
     public function show(Abogado $abogado)
     {
         return view('abogado.show',compact ('abogado'));
-        
     }
 
     /**
@@ -69,7 +66,6 @@ class AbogadoController extends Controller
     public function edit(Abogado $abogado)
     {
         return view('abogado.edit',compact('abogado'));
-        
     }
 
     /**
@@ -88,7 +84,6 @@ class AbogadoController extends Controller
         $abogado->email=$request->email;
         $abogado->save();
         return redirect()->route('abogados.index');
-    
     }
 
     /**

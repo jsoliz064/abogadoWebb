@@ -6,7 +6,8 @@
 @stop
 
 @section('content')
-<div class="container " style="background-color: rgb(140, 141, 141)">
+<br>
+<div class="container " style="background-color: rgb(255, 255, 255)">
     <div class="row justify-content-center border rounded-top">
         <div class="col">
             {{-- datos --}}

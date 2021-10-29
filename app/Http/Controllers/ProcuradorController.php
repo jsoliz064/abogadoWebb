@@ -14,7 +14,8 @@ class ProcuradorController extends Controller
      */
     public function index()
     {
-        //
+        $procuradors=Procurador::all();
+        return view('procurador.index',compact('procuradors'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ProcuradorController extends Controller
      */
     public function create()
     {
-        //
+        return view('procurador.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class ProcuradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $procuradors=Procurador::create([
+            'ci'=>request('ci'),
+            'nombre'=>request('nombre'),
+            'telefono'=>request('telefono'),
+            'email'=>request('email'),
+        ]);
+        return redirect()->route('procuradors.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class ProcuradorController extends Controller
      */
     public function show(Procurador $procurador)
     {
-        //
+        return view('procurador.show',compact ('procurador'));
     }
 
     /**
@@ -57,7 +65,7 @@ class ProcuradorController extends Controller
      */
     public function edit(Procurador $procurador)
     {
-        //
+        return view('procurador.edit',compact('procurador'));
     }
 
     /**
@@ -69,7 +77,13 @@ class ProcuradorController extends Controller
      */
     public function update(Request $request, Procurador $procurador)
     {
-        //
+        date_default_timezone_set("America/La_Paz");
+        $procurador->ci=$request->ci;
+        $procurador->nombre=$request->nombre;
+        $procurador->telefono=$request->telefono;
+        $procurador->email=$request->email;
+        $procurador->save();
+        return redirect()->route('procuradors.index');
     }
 
     /**
@@ -80,6 +94,7 @@ class ProcuradorController extends Controller
      */
     public function destroy(Procurador $procurador)
     {
-        //
+        $procurador->delete();
+        return redirect()->route('procuradors.index');
     }
 }

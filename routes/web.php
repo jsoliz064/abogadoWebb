@@ -7,6 +7,7 @@ use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\AbogadoController;
 use App\Http\Controllers\ProcuradorController;
 use App\Http\Controllers\AbogadoExpedienteController;
+use App\Http\Controllers\ProcuradorExpedienteController;
 
 
 /*
@@ -26,11 +27,26 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('clientes',ClienteController::class);
-Route::resource('expedientes',ExpedienteController::class);
-Route::resource('documentos',DocumentoController::class);
 Route::resource('abogados',AbogadoController::class);
-Route::resource('procuradores',ProcuradorController::class);
-Route::resource('abogadoexpedientes',AbogadoExpedienteController::class);
+Route::resource('procuradors',ProcuradorController::class);
+
+Route::resource('expedientes',ExpedienteController::class);
+Route::get('expedientes/abogados/show/{expediente}',[ExpedienteController::class,'showAbogados'])->name('expedientes.abogados');
+Route::get('expedientes/procuradores/show/{expediente}',[ExpedienteController::class,'showProcuradores'])->name('expedientes.procuradors');
+
+
+Route::resource('documentos',DocumentoController::class);
 Route::get('expedientes/show/{expediente}',[DocumentoController::class,'index2'])->name('expedientes.docs');
+
+
+Route::resource('abogadoexpedientes',AbogadoExpedienteController::class);
 Route::get('expedientes/create2/{expediente}',[AbogadoExpedienteController::class,'create2'])->name('expedientes.create2');
+Route::post('expedientes/abogados/store/{expediente}',[AbogadoExpedienteController::class,'storeAbogadoExpediente'])->name('expedientesAbogados.store');
+Route::delete('expedientes/abogados/destroy/{expediente}',[AbogadoExpedienteController::class,'destroyAbogadoExpediente'])->name('expedientes.destroyabogado');
+
+
+Route::resource('procuradorexpedientes',ProcuradorExpedienteController::class);
+Route::post('expedientes/procuradores/store/{expediente}',[ProcuradorExpedienteController::class,'storeProcuradorExpediente'])->name('expedientesProcuradors.store');
+Route::delete('expedientes/procuradores/destroy/{expediente}',[ProcuradorExpedienteController::class,'destroyProcuradorExpediente'])->name('expedientes.destroyprocurador');

@@ -1,21 +1,21 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'Procurador - Registrar')
 
 @section('content_header')
-    <h1>Registrar Cliente</h1>
+    <h1>Registrar Procurador</h1>
 @stop
 
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form method="post" action="{{route('clientes.store')}}" novalidate >
+        <form method="post" action="{{route('procuradors.store')}}" novalidate >
 
             @csrf
             <h5>Carnet de Identidad:</h5>
             <input type="text"  name="ci"  class="focus border-primary  form-control">
             @error('ci')
-                <p>DEBE INGRESAR BIEN SU FECHA DE NACIMIENTO</p>
+                <p>DEBE INGRESAR BIEN SU CI</p>
             @enderror
 
             <h5>Nombre Completo:</h5>
@@ -23,20 +23,6 @@
             @error('nombre')
             <p>DEBE INGRESAR BIEN SU NOMBRE</p>
             @enderror
-
-
-         <div class="form-group">
-            <h5>Sexo:</h5>
-            <select name="sexo" id="select-sexo"  class="focus border-primary  form-control">
-                <option >Elegir una Opcion</option>
-                <option value="F">Femenino</option>
-                <option value="M">Masculino</option>
-            </select>
-
-            @error('sexo')
-                <p>DEBE INGRESAR BIEN SU SEXO</p>
-            @enderror
-         </div>
 
             <h5>Telefono:</h5>
             <input type="text" name="telefono"  class="focus border-primary  form-control" >
@@ -59,7 +45,7 @@
             
             <button  class="btn btn-danger btn-sm" type="submit">Registrar</button>
 
-            <a href="{{route('clientes.index')}}"class="btn btn-warning text-white btn-sm">Volver</a>
+            <a href="{{route('procuradors.index')}}"class="btn btn-warning text-white btn-sm">Volver</a>
         </form>
 
     </div>

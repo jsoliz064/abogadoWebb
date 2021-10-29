@@ -54,6 +54,20 @@ class AbogadoExpedienteController extends Controller
         $expediente=$request->id_expediente;
         return redirect(route('expedientes.create2',compact('expediente')));
     }
+    public function storeAbogadoExpediente(Request $request,Expediente $expediente)
+    {
+        if ($request->id_abogado<>"null"){
+            date_default_timezone_set("America/La_Paz");
+            $abogadoExpediente=abogadoExpediente::create([
+                'id_abogado'=>request('id_abogado'),
+                'id_expediente'=> $expediente->id,
+            ]);
+            return redirect(route('expedientes.abogados',compact('expediente')));
+        }
+        else {
+            return redirect()->route('expedientes.abogados',compact('expediente'))->with('status','Seleccione un abogado');
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -98,5 +112,14 @@ class AbogadoExpedienteController extends Controller
     public function destroy(AbogadoExpediente $abogadoExpediente)
     {
         //
+    }
+    public function destroyAbogadoExpediente(Request $request,Expediente $expediente)
+    {
+        $abogadoExpediente_id=DB::select("SELECT id FROM abogado_expedientes WHERE id_expediente=$expediente->id and id_abogado=$request->abogado");
+        if ($abogadoExpediente_id){
+            abogadoExpediente::destroy($abogadoExpediente_id[0]->id);
+            return redirect()->route('expedientes.abogados',compact ('expediente'));
+        }
+        return redirect()->route('expedientes.abogados',compact ('expediente'))->with('status','no se pudo eliminar');
     }
 }

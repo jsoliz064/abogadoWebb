@@ -18,6 +18,7 @@
       <table class="table table-striped" id="expediente" >
         <thead>
           <tr>
+            <th scope="col" width="5%">ID</th>
             <th scope="col" width="10%">Codigo</th>
             <th scope="col">Nombre del proceso</th>
             <th scope="col">Materia</th>
@@ -31,6 +32,7 @@
 
           @foreach ($expedientes as $expediente)
             <tr>
+              <td>{{$expediente->id}}</td>
               <td>{{$expediente->codigo}}</td>
               <td>{{$expediente->nombre}}</td>
               <td>{{$expediente->materia}}</td>
@@ -39,7 +41,7 @@
                 <form  action="{{route('expedientes.destroy',$expediente)}}" method="post">
                   @csrf
                   @method('delete')
-                    <a  class="btn btn-primary btn-sm" href="{{route('expedientes.docs',$expediente)}}">Ver Documentos</a>  
+                    <a  class="btn btn-primary btn-sm" href="{{route('expedientes.show',$expediente)}}">Ver</a>  
                     <a class="btn btn-info btn-sm" href="{{route('expedientes.edit',$expediente)}}">Editar</a>                 
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>

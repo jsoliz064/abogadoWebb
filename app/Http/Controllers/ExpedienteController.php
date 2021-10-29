@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expediente;
 use App\Models\Abogado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExpedienteController extends Controller
 { 
@@ -55,6 +56,18 @@ class ExpedienteController extends Controller
     public function show(Expediente $expediente)
     {
         return view('expediente.show',compact ('expediente'));
+    }
+    public function showAbogados(Expediente $expediente)
+    {
+        $abogadoos=DB::select("SELECT * FROM abogados WHERE id NOT IN(SELECT id_abogado FROM abogado_expedientes WHERE id_expediente=$expediente->id)");
+        $abogados=DB::select("SELECT * FROM abogados WHERE id IN(SELECT id_abogado FROM abogado_expedientes WHERE id_expediente=$expediente->id)");
+        return view('expediente.showAbogados',compact ('expediente','abogados','abogadoos'));
+    }
+    public function showProcuradores(Expediente $expediente)
+    {
+        $procuradoors=DB::select("SELECT * FROM procuradors WHERE id NOT IN(SELECT id_procurador FROM procurador_expedientes WHERE id_expediente=$expediente->id)");
+        $procuradors=DB::select("SELECT * FROM procuradors WHERE id IN(SELECT id_procurador FROM procurador_expedientes WHERE id_expediente=$expediente->id)");
+        return view('expediente.showProcuradors',compact ('expediente','procuradors','procuradoors'));
     }
 
     /**

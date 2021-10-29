@@ -1,12 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'Procurador - show')
 
 @section('content_header')
 @stop
 
 @section('content')
-<div class="container " style="background-color: white">
+<br>
+<div class="container " style="background-color: rgb(255, 255, 255)">
     <div class="row justify-content-center border rounded-top">
         <div class="col">
             {{-- datos --}}
@@ -17,35 +18,22 @@
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Carnet de Identidad: </h5>
-                        <h5>{{$cliente->ci}}</h5>
+                        <h5>{{$procurador->ci}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Nombre Completo: </h5>
-                        <h5>{{$cliente->nombre}}</h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="font-weight-bold px-2">Sexo: </h5>
-                        <?php
-                        $sexo="NULO";
-                        if ($cliente->sexo==="M"){
-                            $sexo="Masculino";
-                        }
-                        else{
-                            $sexo="Femenino";
-                        }
-                        ?>
-                        <h5>{{$sexo}}</h5>
+                        <h5>{{$procurador->nombre}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Telefono: </h5>
-                        <h5>{{$cliente->telefono}}</h5>
+                        <h5>{{$procurador->telefono}}</h5>
                     </div>
                     <div class="row">
                         <h5 class="font-weight-bold px-2">Email: </h5>
-                        <h5>{{$cliente->email}}</h5>
+                        <h5>{{$procurador->email}}</h5>
                     </div>
                     <div class="row">
-                        <a href="{{route('clientes.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
+                        <a href="{{route('procuradors.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
                     </div>
                 </div>
             </div>

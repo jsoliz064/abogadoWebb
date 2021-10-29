@@ -21,8 +21,4 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-mo
    sr.reveal(`.home_content, .home_img, .footer_content, .pack_content, .semestres_content`, {interval: 200}); function scrollUp(){const scrollUp = document.getElementById('scroll-up'); 
    if(this.scrollY >= 560) scrollUp.classList.add('show-scroll'); 
    else scrollUp.classList.remove('show-scroll')}; window.addEventListener('scroll', scrollUp); 
-   new Typewriter('#typewriter', {strings: ['C. I. Sistemas', 'C. I. Informatica', 'C. I. Redes y Telecomunicaciones','Aprende +', ''], autoStart: true, loop: true, cursor: "|"}); 
-   document.addEventListener('mousemove', move); 
-   function move(e){this.querySelectorAll('.move').forEach(layer =>{ const speed = layer.getAttribute('data-speed'); 
-   const x = (window.innerWidth - e.pageX*speed)/120; const y = (window.innerHeight - e.pageY*speed)/120
-layer.style.transform = `translateX(${x}px) translateY(${y}px)`})};
+   
