@@ -35,10 +35,12 @@ Route::resource('procuradors',ProcuradorController::class);
 Route::resource('expedientes',ExpedienteController::class);
 Route::get('expedientes/abogados/show/{expediente}',[ExpedienteController::class,'showAbogados'])->name('expedientes.abogados');
 Route::get('expedientes/procuradores/show/{expediente}',[ExpedienteController::class,'showProcuradores'])->name('expedientes.procuradors');
+Route::get('expedientes/documentos/show/{expediente}',[ExpedienteController::class,'showDocumentos'])->name('expedientes.documentos');
 
 
 Route::resource('documentos',DocumentoController::class);
 Route::get('expedientes/show/{expediente}',[DocumentoController::class,'index2'])->name('expedientes.docs');
+Route::delete('expedientes/documentos/destroy/{expediente}',[DocumentoController::class,'destroyDocumentoExpediente'])->name('expedientes.destroydocumento');
 
 
 Route::resource('abogadoexpedientes',AbogadoExpedienteController::class);

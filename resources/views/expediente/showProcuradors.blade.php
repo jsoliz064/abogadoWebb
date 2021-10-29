@@ -24,7 +24,7 @@
           <a class="nav-link active" href="#">Procuradores</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Documentos</a>
+          <a class="nav-link" href="{{route('expedientes.documentos',$expediente)}}">Documentos</a>
         </li>
       </ul>
     </div>

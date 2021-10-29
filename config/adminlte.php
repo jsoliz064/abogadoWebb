@@ -258,33 +258,28 @@ return [
             /* 'can' => 'users.index' */
         ],
         ['header' => 'GESTIONAR'],
-        [
-            'text'    => 'RR.HH',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Abogados',
-                    'url'  => 'abogados',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-                [
-                    'text' => 'Procuradores',
-                    'url'  => 'procuradors',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-user',
-                ],
+            [
+                'text'        => 'Expedientes',
+                'url'         => 'expedientes',
+                'icon'        => 'far fa-fw fa-file',
+                'label_color' => 'success',
             ],
-        ],
-        [
-            'text'        => 'Expedientes',
-            'url'         => 'expedientes',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
+            [
+                'text' => 'Abogados',
+                'url'  => 'abogados',
+                'icon' => 'fas fa-fw fa-user',
+            ],
+            [
+                'text' => 'Procuradores',
+                'url'  => 'procuradors',
+                'icon' => 'fas fa-fw fa-user',
+            ],
+            [
+                'text' => 'Clientes',
+                'url'  => 'clientes',
+                'icon' => 'fas fa-fw fa-user',
+            ],
+        
     ],
 
     /*

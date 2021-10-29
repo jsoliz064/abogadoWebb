@@ -97,4 +97,17 @@ class DocumentoController extends Controller
         $documento->delete();
         return redirect()->route('documentos.index');
     }
+    public function destroyDocumentoExpediente(Request $request,Expediente $expediente)
+    {
+        $ruta = DB::table('documentos')->where('id',$request->documento)->value('ruta');
+        if (file_exists("../" . $ruta)){
+            unlink("../" . $ruta);
+        }
+        $documento_id=DB::select("SELECT id FROM documentos WHERE id=$request->documento");
+        if ($documento_id){
+            Documento::destroy($documento_id[0]->id);
+            return redirect()->route('expedientes.documentos',compact ('expediente'));
+        }
+        return redirect()->route('expedientes.documentos',compact ('expediente'))->with('status','no se pudo eliminar');
+    }
 }

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Clientes')
+@section('title', 'Documento - Show')
 
 @section('content_header')
 @stop
 
 @section('content')
 
-  <a href="{{route('documentos.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
+  {{--  <a href="{{route('documentos.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>  --}}
 <div class="card-body">
     <div align="center">
         <div class="container">

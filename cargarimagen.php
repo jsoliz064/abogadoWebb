@@ -36,8 +36,9 @@
         
         echo "SE SUBIO EXITOSAMENTE";
     
+    }else{
+        echo "Codigo de expediente no válido";
     }
-    echo "Codigo de expediente no válido";
     $sentencia=null;
     $conexion=null;
 ?>
