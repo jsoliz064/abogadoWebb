@@ -2,6 +2,7 @@
     include 'conexionpg.php';
     $codigo = $_POST['nom'];
     $imagen = $_POST['imagenes'];
+    $user = $_POST['id_usuario'];
 
     //Pedir id del perteneciente a codigo_expediente
     $sentencia=$conexion->prepare("SELECT * FROM expedientes WHERE codigo=?");
@@ -27,9 +28,9 @@
         date_default_timezone_set("America/La_Paz");
         $fecha=getdate();
         $fechaactual=$fecha["year"] . "-" . $fecha["mon"] . "-" . $fecha["mday"] . " " . $fecha["hours"] . ":" . $fecha["minutes"] . ":" . $fecha["seconds"]; 
-        $sql = "INSERT INTO documentos (id_expediente, ruta, created_at) VALUES (?,?,?)";
+        $sql = "INSERT INTO documentos (id_expediente, id_usuario, ruta, created_at) VALUES (?,?,?,?)";
         $stmt= $conexion->prepare($sql);
-        $stmt->execute([$id_expediente, $path, $fechaactual]);
+        $stmt->execute([$id_expediente,$user,$path, $fechaactual]);
     
         
         file_put_contents($path, base64_decode($imagen));

@@ -250,7 +250,7 @@ return [
         [
              'text' => 'Perfil',
              'url'  => 'user/profile/',
-             'icon' => 'fas fa-fw fa-user',
+             'icon' => 'fas fa-user-edit',
          ],
         /*  [
              'text' => 'Cambiar Contraseña',
@@ -278,17 +278,17 @@ return [
             [
                 'text' => 'Abogados',
                 'url'  => 'abogados',
-                'icon' => 'fas fa-fw fa-user',
+                'icon' => 'fas fa-user-tie',
             ],
             [
                 'text' => 'Procuradores',
                 'url'  => 'procuradors',
-                'icon' => 'fas fa-fw fa-user',
+                'icon' => 'fas fa-running',
             ],
             [
                 'text' => 'Clientes',
                 'url'  => 'clientes',
-                'icon' => 'fas fa-fw fa-user',
+                'icon' => 'fas fa-users',
             ],
         
     ],

@@ -20,6 +20,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Codigo Expediente</th>
+            <th scope="col">Procurador</th>
             <th scope="col">Nombre de archivo</th>
             <th scope="col">Fecha de subida</th>
             <th scope="col" width="20%">Acciones</th>
@@ -32,6 +33,7 @@
             <tr>
               <td>{{$documento->id}}</td>
               <td>{{DB::table('expedientes')->where('id',$documento->id_expediente)->value('codigo')}}</td>
+              <td>{{DB::table('users')->where('id',$documento->id_usuario)->value('name')}}</td>
               <td>{{$documento->ruta}}</td>
               <td>{{$documento->created_at}}</td>
               <td>
