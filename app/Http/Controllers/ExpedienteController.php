@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Expediente;
 use App\Models\Abogado;
+use App\Models\Cliente;
 use App\Models\Documento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        $expedientes=Expediente::all();
+        $expedientes=Expediente::where('id_usuario',auth()->user()->id);
         return view('expediente.index',compact('expedientes'));
     }
     /**
@@ -27,7 +28,8 @@ class ExpedienteController extends Controller
      */
     public function create()
     {
-        return view('expediente.create2');
+        $clientes=Cliente::All();
+        return view('expediente.create', compact ('clientes'));
     }
 
     /**
@@ -38,14 +40,21 @@ class ExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        date_default_timezone_set("America/La_Paz");
-        $expedientes=Expediente::create([
-            'codigo'=>request('codigo'),
-            'nombre'=>request('nombre'),
-            'materia'=>request('materia'),
-        ]);
-        $expediente=Expediente::all()->last()->id;
-        return redirect()->route('expedientes.create2',$expediente);
+        if ($request->id_cliente <>"null"){
+            date_default_timezone_set("America/La_Paz");
+            $expedientes=Expediente::create([
+                'id_cliente'=>request('id_cliente'),
+                'id_usuario'=>auth()->user()->id,
+                'codigo'=>request('codigo'),
+                'nombre'=>request('nombre'),
+                'materia'=>request('materia'),
+            ]);
+            $expediente=Expediente::all()->last()->id;
+            return redirect()->route('expedientes.show',compact ('expediente'));
+        }else{
+            return redirect()->route('expedientes.create')->with('status','Seleccione un Cliente');
+
+        }
     }
 
     /**
@@ -56,7 +65,8 @@ class ExpedienteController extends Controller
      */
     public function show(Expediente $expediente)
     {
-        return view('expediente.show',compact ('expediente'));
+        $cliente=Cliente::where('id',$expediente->id_cliente)->value('nombre');
+        return view('expediente.show',compact ('expediente','cliente'));
     }
     public function showAbogados(Expediente $expediente)
     {

@@ -24,7 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $expedientes=Expediente::all();
+        $expedientes=Expediente::All();
         return view('index',compact('expedientes'));
     }
+    public function index2(Request $request)
+    {
+        if ($request->id_expediente<>""){
+        $expedientes=Expediente::where('codigo',$request->id_expediente)->get();
+        }else{
+        $expedientes=Expediente::All();
+        }
+        return view('index',compact('expedientes'));
+    }
+    
 }

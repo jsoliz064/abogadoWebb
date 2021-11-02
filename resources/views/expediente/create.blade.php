@@ -7,9 +7,26 @@
 @stop
 
 @section('content')
+@if(session('status'))
+    <h4 class="alert alert-warning mb-2">{{session('status')}}</h4>
+@endif
 <div class="card">
     <div class="card-body">
         <form method="post" action="{{route('expedientes.store')}}" novalidate >
+
+            <h5>Cliente:</h5>
+            <select name = "id_cliente" id="id_cliente" class="form-control" onchange="habilitar()" >
+                <option value="null">Seleccione la materia </option>
+                    @foreach ($clientes as $cliente)
+                        <option value="{{$cliente->id}}">
+                            {{$cliente->nombre}}
+                        </option>
+                    @endforeach
+            </select>
+           
+            @error('id_cliente')
+                <p>DEBE SELECCIONAR UN CLIENTE</p>
+            @enderror
 
             @csrf
             <h5>Codigo:</h5>

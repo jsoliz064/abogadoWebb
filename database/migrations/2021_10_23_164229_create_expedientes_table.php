@@ -15,9 +15,13 @@ class CreateExpedientesTable extends Migration
     {
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_cliente');
+            $table->unsignedBigInteger('id_usuario');
             $table->string('codigo')->unique();
             $table->string('nombre')->nullable();
             $table->string('materia')->nullable();
+            $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('set null')->onUpdate('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -41,13 +41,17 @@
               <h5 class="font-weight-bold px-2">Materia: </h5>
               <h5>{{$expediente->materia}}</h5>
           </div>
+
           <div class="row">
-              <a href="{{route('expedientes.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver</a>
+            <h5 class="font-weight-bold px-2">cliente: </h5>
+            <h5>{{$cliente}}</h5>
+          </div>
+
+          <div class="row">
+              <a href="{{route('expedientes.index')}}"class="btn btn-warning text-white btn-sm m-2">Volver a expedientes</a>
           </div>
       </div>
-   {{--     
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>  --}}
+ 
     </div>
   </div>
 

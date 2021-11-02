@@ -14,7 +14,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $clientes=Cliente::all();
+        $clientes=Cliente::where('id_usuario',auth()->user()->id)->get();
         return view('cliente.index',compact('clientes'));
     }
 
@@ -38,6 +38,7 @@ class ClienteController extends Controller
     {
         date_default_timezone_set("America/La_Paz");
         $clientes=Cliente::create([
+            'id_usuario' => auth()->user()->id,
             'ci'=>request('ci'),
             'nombre'=>request('nombre'),
             'telefono'=>request('telefono'),

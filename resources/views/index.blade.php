@@ -15,10 +15,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <form class="form-inline form">
+    <form method="GET" action="{{route('index')}}" class="form-inline form">
         <div class="form-group mx-sm-3">
-            <label for="inputUser" class="sr-only">User</label>
-            <input type="text" class="form-control" id="inputUser" placeholder="Codigo de Expediente">
+            <label for="id_expediente" class="sr-only">Codigo</label>
+            <input type="text" class="form-control" name="id_expediente" id="id_expediente" placeholder="Codigo de Expediente">
         </div>
         <button type="submit" class="btn btn-primary">Buscar</button>
      </form>
