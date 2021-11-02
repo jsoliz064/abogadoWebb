@@ -9,7 +9,9 @@
 @section('content')
   <div class="card">
     <div class="card-header">
-          <a class="btn btn-primary btb-sm" href="{{url('/expedientes/create')}}">Registrar Expediente</a>    
+        @can('procuradores.create')
+          <a class="btn btn-primary btb-sm" href="{{url('/expedientes/create')}}">Registrar Expediente</a> 
+        @endcan   
     </div>
   </div>
 
@@ -41,10 +43,14 @@
                 <form  action="{{route('expedientes.destroy',$expediente)}}" method="post">
                   @csrf
                   @method('delete')
-                    <a  class="btn btn-primary btn-sm" href="{{route('expedientes.show',$expediente)}}">Ver</a>  
-                    <a class="btn btn-info btn-sm" href="{{route('expedientes.edit',$expediente)}}">Editar</a>                 
+                    <a  class="btn btn-primary btn-sm" href="{{route('expedientes.show',$expediente)}}">Ver</a> 
+                    @can('procuradores.edit') 
+                    <a class="btn btn-info btn-sm" href="{{route('expedientes.edit',$expediente)}}">Editar</a>  
+                    @endcan
+                    @can('packs.destroy')
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
+                    @endcan  
                 </form>
               </td>    
             </tr>

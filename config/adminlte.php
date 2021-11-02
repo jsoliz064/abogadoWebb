@@ -229,7 +229,7 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
@@ -246,16 +246,27 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'CONFIGURACION'],
+        [
+             'text' => 'Perfil',
+             'url'  => 'user/profile/',
+             'icon' => 'fas fa-fw fa-user',
+         ],
+        /*  [
+             'text' => 'Cambiar Contraseña',
+             'url'  => '',
+             'icon' => 'fas fa-fw fa-lock',
+         ], */
         ['header' => 'ADMINISTRAR',
-        /* 'can' => 'packs.index', */
+        'can' => 'admin.users.index',
         ],
         //Usuarios------------------------------------------------------------------
         [
             'text' => 'Usuarios',
-            'url'  => 'users',
+            'route'  => 'admin.users.index',
             'icon' => 'fas fa-user-lock',
             'icon_color'=>'primary',
-            /* 'can' => 'users.index' */
+            'can' => 'admin.users.index'
         ],
         ['header' => 'GESTIONAR'],
             [

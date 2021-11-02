@@ -12,6 +12,14 @@ class ProcuradorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   //               ('can:materias.index') aprobando permiso, ->only('index') solo para el metodo index
+        $this->middleware('can:procuradores.index')->only('index');
+        $this->middleware('can:procuradores.create')->only('create', 'store');
+        $this->middleware('can:procuradores.edit')->only('edit', 'update');
+        $this->middleware('can:procuradores.destroy')->only('destroy');
+    }
+    
     public function index()
     {
         $procuradors=Procurador::all();

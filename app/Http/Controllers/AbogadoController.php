@@ -12,6 +12,14 @@ class AbogadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   //               ('can:materias.index') aprobando permiso, ->only('index') solo para el metodo index
+        $this->middleware('can:abogados.index')->only('index');
+        $this->middleware('can:abogados.create')->only('create', 'store');
+        $this->middleware('can:abogados.edit')->only('edit', 'update');
+        $this->middleware('can:abogados.destroy')->only('destroy');
+    }
+    
     public function index()
     {
         $abogados=Abogado::all();

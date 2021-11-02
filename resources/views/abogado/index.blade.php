@@ -9,7 +9,9 @@
 @section('content')
   <div class="card">
     <div class="card-header">
-          <a class="btn btn-primary btb-sm" href="{{route('abogados.create')}}">Registrar Abogado</a>    
+      @can('abogados.create')
+          <a class="btn btn-primary btb-sm" href="{{route('abogados.create')}}">Registrar Abogado</a>  
+      @endcan  
     </div>
   </div>
 
@@ -39,9 +41,13 @@
                   @csrf
                   @method('delete')
                     <a  class="btn btn-primary btn-sm" href="{{route('abogados.show',$abogado)}}">Ver</a>  
-                    <a class="btn btn-info btn-sm" href="{{route('abogados.edit',$abogado)}}">Editar</a>                 
+                    @can('abpgados.show') 
+                      <a class="btn btn-info btn-sm" href="{{route('abogados.edit',$abogado)}}">Editar</a>    
+                    @endcan   
+                    @can('abpgados.destroy')          
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
+                    @endcan 
                 </form>
               </td>    
             </tr>

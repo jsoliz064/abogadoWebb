@@ -8,6 +8,7 @@ use App\Http\Controllers\AbogadoController;
 use App\Http\Controllers\ProcuradorController;
 use App\Http\Controllers\AbogadoExpedienteController;
 use App\Http\Controllers\ProcuradorExpedienteController;
+use App\Http\Controllers\userController;
 
 
 /*
@@ -52,3 +53,8 @@ Route::delete('expedientes/abogados/destroy/{expediente}',[AbogadoExpedienteCont
 Route::resource('procuradorexpedientes',ProcuradorExpedienteController::class);
 Route::post('expedientes/procuradores/store/{expediente}',[ProcuradorExpedienteController::class,'storeProcuradorExpediente'])->name('expedientesProcuradors.store');
 Route::delete('expedientes/procuradores/destroy/{expediente}',[ProcuradorExpedienteController::class,'destroyProcuradorExpediente'])->name('expedientes.destroyprocurador');
+
+Route::get('user/profile/',[userController::class,'show2'])->name('user.show');
+Route::patch('user/update/',[userController::class,'update2'])->name('user.update');
+Route::resource('users',userController::class)->names('admin.users');
+

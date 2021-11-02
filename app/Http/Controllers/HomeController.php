@@ -32,7 +32,7 @@ class HomeController extends Controller
         if ($request->id_expediente<>""){
         $expedientes=Expediente::where('codigo',$request->id_expediente)->get();
         }else{
-        $expedientes=Expediente::All();
+        $expedientes=Expediente::where('id_usuario',auth()->user()->id)->get();
         }
         return view('index',compact('expedientes'));
     }

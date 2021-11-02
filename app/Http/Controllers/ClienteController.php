@@ -12,6 +12,13 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   //               ('can:materias.index') aprobando permiso, ->only('index') solo para el metodo index
+        $this->middleware('can:clientes.index')->only('index');
+        $this->middleware('can:clientes.create')->only('create', 'store');
+        $this->middleware('can:clientes.edit')->only('edit', 'update');
+        $this->middleware('can:clientes.destroy')->only('destroy');
+    }
     public function index()
     {
         $clientes=Cliente::where('id_usuario',auth()->user()->id)->get();

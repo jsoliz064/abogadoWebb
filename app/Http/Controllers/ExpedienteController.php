@@ -16,6 +16,14 @@ class ExpedienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   //               ('can:materias.index') aprobando permiso, ->only('index') solo para el metodo index
+        $this->middleware('can:expedientes.index')->only('index');
+        $this->middleware('can:expedientes.create')->only('create', 'store');
+        $this->middleware('can:expedientes.edit')->only('edit', 'update');
+        $this->middleware('can:expedientes.destroy')->only('destroy');
+    }
+    
     public function index()
     {
         $expedientes=Expediente::where('id_usuario',auth()->user()->id);

@@ -38,11 +38,15 @@
                 <form  action="{{route('procuradors.destroy',$procurador)}}" method="post">
                   @csrf
                   @method('delete')
-                    <a  class="btn btn-primary btn-sm" href="{{route('procuradors.show',$procurador)}}">Ver</a>  
-                    <a class="btn btn-info btn-sm" href="{{route('procuradors.edit',$procurador)}}">Editar</a>                 
+                    <a  class="btn btn-primary btn-sm" href="{{route('procuradors.show',$procurador)}}">Ver</a>
+                    @can('procuradores.edit')  
+                    <a class="btn btn-info btn-sm" href="{{route('procuradors.edit',$procurador)}}">Editar</a>  
+                    @endcan
+                    @can('procuradores.destroy')               
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
-                </form>
+                    @endcan
+                  </form>
               </td>    
             </tr>
           @endforeach
