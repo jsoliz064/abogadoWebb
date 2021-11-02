@@ -14,6 +14,10 @@ class DocumentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {   //               ('can:materias.index') aprobando permiso, ->only('index') solo para el metodo index
+        $this->middleware('can:login');
+    }
     public function index()
     {
         $documentos=Documento::all();
@@ -22,7 +26,8 @@ class DocumentoController extends Controller
     }
     public function index2($expediente)
     {   
-        $documentos=Documento::where('id_expediente',$expediente)->get();
+        //$documentos=Documento::where('id_expediente',$expediente)->get();
+        $documentos=DB::table('documentos')->where('id_expediente',$expediente)->orderBy('created_at','desc')->get();
         return view('documento.index',compact('documentos'));
     }
 

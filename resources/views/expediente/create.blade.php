@@ -16,7 +16,7 @@
 
             <h5>Cliente:</h5>
             <select name = "id_cliente" id="id_cliente" class="form-control" onchange="habilitar()" >
-                <option value="null">Seleccione la materia </option>
+                <option value="null">Seleccione un cliente </option>
                     @foreach ($clientes as $cliente)
                         <option value="{{$cliente->id}}">
                             {{$cliente->nombre}}

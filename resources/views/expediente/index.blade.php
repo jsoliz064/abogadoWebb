@@ -9,7 +9,7 @@
 @section('content')
   <div class="card">
     <div class="card-header">
-        @can('procuradores.create')
+        @can('expedientes.create')
           <a class="btn btn-primary btb-sm" href="{{url('/expedientes/create')}}">Registrar Expediente</a> 
         @endcan   
     </div>
@@ -44,10 +44,10 @@
                   @csrf
                   @method('delete')
                     <a  class="btn btn-primary btn-sm" href="{{route('expedientes.show',$expediente)}}">Ver</a> 
-                    @can('procuradores.edit') 
+                    @can('expedientes.edit') 
                     <a class="btn btn-info btn-sm" href="{{route('expedientes.edit',$expediente)}}">Editar</a>  
                     @endcan
-                    @can('packs.destroy')
+                    @can('expedientes.destroy')
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
                     @endcan  

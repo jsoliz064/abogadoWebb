@@ -20,6 +20,8 @@ class userController extends Controller
         $this->middleware('can:admin.users.create')->only('create', 'store');
         $this->middleware('can:admin.users.edit')->only('edit', 'update');
         $this->middleware('can:admin.users.destroy')->only('destroy');
+        $this->middleware('can:login');
+
     }
 
     public function index()
@@ -152,8 +154,8 @@ class userController extends Controller
      */
     public function destroy(User $user)
     {
-        $nombreRol = DB::table('roles')->where('id', '=', $user->idRol)->value('name');
-        $user->removeRole($nombreRol);
+        /* $nombreRol = DB::table('roles')->where('id', '=', $user->idRol)->value('name');
+        $user->removeRole($nombreRol); */
         $user->delete();
         
         return redirect()->route('admin.users.index');

@@ -18,6 +18,8 @@ class ProcuradorController extends Controller
         $this->middleware('can:procuradores.create')->only('create', 'store');
         $this->middleware('can:procuradores.edit')->only('edit', 'update');
         $this->middleware('can:procuradores.destroy')->only('destroy');
+        $this->middleware('can:login');
+        
     }
     
     public function index()

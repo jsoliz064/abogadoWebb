@@ -22,11 +22,12 @@ class ExpedienteController extends Controller
         $this->middleware('can:expedientes.create')->only('create', 'store');
         $this->middleware('can:expedientes.edit')->only('edit', 'update');
         $this->middleware('can:expedientes.destroy')->only('destroy');
+        $this->middleware('can:login');
     }
     
     public function index()
     {
-        $expedientes=Expediente::where('id_usuario',auth()->user()->id);
+        $expedientes=Expediente::where('id_usuario',auth()->user()->id)->get();
         return view('expediente.index',compact('expedientes'));
     }
     /**
@@ -36,8 +37,8 @@ class ExpedienteController extends Controller
      */
     public function create()
     {
-        $clientes=Cliente::All();
-        return view('expediente.create', compact ('clientes'));
+        $clientes=Cliente::where('id_usuario',auth()->user()->id)->get();
+        return view('expediente.create',compact ('clientes'));
     }
 
     /**
@@ -90,7 +91,9 @@ class ExpedienteController extends Controller
     }
     public function showDocumentos(Expediente $expediente)
     {
-        $documentos=Documento::where('id_expediente',$expediente->id)->get();
+        //$documentos=Documento::where('id_expediente',$expediente->id)->get();
+        $documentos=DB::table('documentos')->where('id_expediente',$expediente->id)->orderBy('created_at','desc')->get();
+        
         //$procuradoors=DB::select("SELECT * FROM procuradors WHERE id NOT IN(SELECT id_procurador FROM procurador_expedientes WHERE id_expediente=$expediente->id)");
         //$documentos=DB::select("SELECT * FROM expedientes WHERE id IN(SELECT id_procurador FROM procurador_expedientes WHERE id_expediente=$expediente->id)");
         return view('expediente.showDocumentos',compact ('expediente','documentos'));
@@ -104,7 +107,10 @@ class ExpedienteController extends Controller
      */
     public function edit(Expediente $expediente)
     {
-        return view('expediente.edit',compact('expediente'));
+        $clientes=Cliente::where('id_usuario',auth()->user()->id)->get();
+        $cliente=Cliente::where('id',$expediente->id_cliente)->value('nombre');
+
+        return view('expediente.edit',compact('expediente','clientes','cliente'));
     }
 
     /**
@@ -120,6 +126,9 @@ class ExpedienteController extends Controller
         $expediente->codigo=$request->codigo;
         $expediente->nombre=$request->nombre;
         $expediente->materia=$request->materia;
+        if ($request->id_cliente<>$expediente->id_cliente){
+            $expediente->id_cliente=$request->id_cliente;
+        }
         $expediente->save();
         return redirect()->route('expedientes.index');
     }

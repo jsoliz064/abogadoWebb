@@ -9,7 +9,7 @@
 @section('content')
   <div class="card">
     <div class="card-header">
-          <a class="btn btn-primary btb-sm" href="{{route('expedientes.index')}}">Atras</a>    
+          <a class="btn btn-primary btb-sm" href="{{route('home')}}">Atras</a>    
     </div>
   </div>
 
@@ -23,7 +23,6 @@
             <th scope="col">Nombre de archivo</th>
             <th scope="col">Fecha de subida</th>
             <th scope="col" width="20%">Acciones</th>
-            {{-- <th colspan=""></th> --}}
           </tr>
         </thead>
         
@@ -36,11 +35,10 @@
               <td>{{$documento->ruta}}</td>
               <td>{{$documento->created_at}}</td>
               <td>
-                <form  action="{{route('documentos.destroy',$documento)}}" method="post">
+                <form  action="{{route('documentos.destroy',$documento->id)}}" method="post">
                   @csrf
                   @method('delete')
-                    <a  class="btn btn-primary btn-sm" href="{{route('documentos.show',$documento)}}">Ver</a>  
-                    {{--  <a class="btn btn-info btn-sm" href="{{route('documentos.edit',$documento)}}">Editar</a>    --}}               
+                    <a  class="btn btn-primary btn-sm" href="{{route('documentos.show',$documento->id)}}">Ver</a>  
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
                 </form>

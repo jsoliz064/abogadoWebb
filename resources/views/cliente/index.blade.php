@@ -8,12 +8,11 @@
 
 @section('content')
   <div class="card">
-    <div class="card-header">
-      <a class="btn btn-primary btb-sm" href="{{url('/clientes/create')}}">Registrar Cliente</a>  
+    <div class="card-header"> 
         {{-- solo los que tienen permiso a esas rutas.metodo podran ver el button --}}
-        {{--  @can('clientes.create')
+         @can('clientes.create')
           <a class="btn btn-primary btb-sm" href="{{url('/clientes/create')}}">Registrar Cliente</a>    
-        @endcan  --}}
+        @endcan 
     </div>
   </div>
 
@@ -45,9 +44,13 @@
                   @method('delete')
                    
                     <a  class="btn btn-primary btn-sm" href="{{route('clientes.show',$cliente)}}">Ver</a>  
-                    <a class="btn btn-info btn-sm" href="{{route('clientes.edit',$cliente)}}">Editar</a>                                   
+                    @can('clientes.edit')
+                    <a class="btn btn-info btn-sm" href="{{route('clientes.edit',$cliente)}}">Editar</a> 
+                    @endcan
+                    @can('clientes.destroy')                                  
                     <button class="btn btn-danger btn-sm" onclick="return confirm('¿ESTA SEGURO DE  BORRAR?')" 
                     value="Borrar">Eliminar</button>
+                    @endcan
 
                 </form>
               </td>    

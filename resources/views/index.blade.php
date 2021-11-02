@@ -3,14 +3,18 @@
 @section('title', 'Inicio')
 
 @section('content_header')
+@if(session('status'))
+    <h4 class="alert alert-warning mb-2">{{session('status')}}</h4>
+@endif
 <div class="section">
     <h2 class="section_title">BUSCAR EXPEDIENTES</h2>
 </div>
-    {{--  <span class="section_subtitle">Rellene los campos</span>  --}}
 @stop
 
 @section('content')
+
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">

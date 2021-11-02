@@ -18,6 +18,8 @@ class AbogadoController extends Controller
         $this->middleware('can:abogados.create')->only('create', 'store');
         $this->middleware('can:abogados.edit')->only('edit', 'update');
         $this->middleware('can:abogados.destroy')->only('destroy');
+        $this->middleware('can:login');
+
     }
     
     public function index()

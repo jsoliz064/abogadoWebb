@@ -18,6 +18,7 @@ class ClienteController extends Controller
         $this->middleware('can:clientes.create')->only('create', 'store');
         $this->middleware('can:clientes.edit')->only('edit', 'update');
         $this->middleware('can:clientes.destroy')->only('destroy');
+        $this->middleware('can:login');
     }
     public function index()
     {

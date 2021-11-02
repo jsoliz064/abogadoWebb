@@ -21,7 +21,7 @@
                     <h5>{{$documento->created_at}}</h5>
                 </div>
             </div>
-            <img src="{{asset('../' . $documento->ruta)}}" alt="" width="25%">
+            <img src="{{asset('../' . $documento->ruta)}}" alt="" width="80%">
         </div>
     </div>
     
